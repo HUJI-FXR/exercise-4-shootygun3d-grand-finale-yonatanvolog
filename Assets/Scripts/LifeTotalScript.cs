@@ -7,6 +7,7 @@ public class LifeTotalScript : MonoBehaviour
     private ScoreScript scoreScript;
     private HighScoreScript highScoreScript;
     private MonsterHolderScript monsterHolder;
+    private EndgameMessageScript endGameMessage;
 
 
     private void Start()
@@ -15,6 +16,8 @@ public class LifeTotalScript : MonoBehaviour
         scoreScript = FindObjectOfType<ScoreScript>(); // player's score
         highScoreScript = FindObjectOfType<HighScoreScript>(); // player's highscore
         monsterHolder = FindObjectOfType<MonsterHolderScript>();
+        endGameMessage = FindObjectOfType<EndgameMessageScript>();
+
     }
 
     public float GetInitialLifeTotal()
@@ -36,6 +39,14 @@ public class LifeTotalScript : MonoBehaviour
             }
             if ((CompareTag("Player") || monsterHolder.IsLast()) && highScoreScript != null)
             {
+                if(CompareTag("Player"))
+                {
+                    endGameMessage.Lose();
+                }
+                else if (monsterHolder.IsLast())
+                {
+                    endGameMessage.Win();
+                }
                 highScoreScript.CheckAndSaveHighScore();
             }
             Destroy(gameObject);
