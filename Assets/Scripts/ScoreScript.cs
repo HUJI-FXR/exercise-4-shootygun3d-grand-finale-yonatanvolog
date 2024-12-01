@@ -25,6 +25,11 @@ public class ScoreScript : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
+    public int GetScore()
+    {
+        return score;
+    }
+    
     public void AddScore()
     {
         float scoreIncrement = 1f + comboBonus / Mathf.Max(comboTimer, 0.1f);

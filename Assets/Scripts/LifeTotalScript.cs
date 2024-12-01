@@ -5,11 +5,16 @@ public class LifeTotalScript : MonoBehaviour
     [SerializeField] private float initialLifeTotal = 100f;
     private float lifeTotal;
     private ScoreScript scoreScript;
+    private HighScoreScript highScoreScript;
+    private MonsterHolderScript monsterHolder;
+
 
     private void Start()
     {
         lifeTotal = initialLifeTotal;
         scoreScript = FindObjectOfType<ScoreScript>(); // player's score
+        highScoreScript = FindObjectOfType<HighScoreScript>(); // player's highscore
+        monsterHolder = FindObjectOfType<MonsterHolderScript>();
     }
 
     public float GetInitialLifeTotal()
@@ -28,6 +33,10 @@ public class LifeTotalScript : MonoBehaviour
                 {
                     scoreScript.AddScore();
                 }
+            }
+            if ((CompareTag("Player") || monsterHolder.IsLast()) && highScoreScript != null)
+            {
+                highScoreScript.CheckAndSaveHighScore();
             }
             Destroy(gameObject);
         }

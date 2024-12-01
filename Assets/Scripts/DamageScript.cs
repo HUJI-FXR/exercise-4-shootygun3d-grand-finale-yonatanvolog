@@ -3,8 +3,8 @@ using UnityEngine;
 public class DamageScript : MonoBehaviour
 {
     [SerializeField] private string playerTag = "Player";
-    [SerializeField] private float minDamage = 5f;
-    [SerializeField] private float maxDamage = 15f;
+    [SerializeField] private float minDamage = 15f;
+    [SerializeField] private float maxDamage = 25f;
 
     private void OnCollisionEnter(Collision collision)
     {
